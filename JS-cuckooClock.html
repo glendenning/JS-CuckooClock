@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<style type="text/css">
+/* General Page Styling */
+  html {
+  	background-image: url('rainforest.jpg');
+  	background-color: lightgreen;
+  	background-size: auto;
+  	background-repeat: no-repeat;
+  	font-family: 'Verdana';
+  	font-size: 10px;
+  	text-align: center;
+  }
+
+  /* Heading */
+  .heading {
+    font-size: 50px;
+    font-weight: 900;
+    color: white;
+    padding: 20px;
+    background-color: grey;
+  }
+
+  /* Clock Components */
+  .clock {
+  	position: relative;
+  	top, bottom, left, right: 0;
+  	margin: auto;
+  	width: 715px;
+  	height: 715px;
+  	border-radius: 50%;
+  	background-image: url('clockFace.png');
+  }
+  .clock-face {
+  	position: relative;
+  	width: 100%;
+  	height: 100%;
+  }
+  .hand {
+  	position: absolute;
+  	top: 50%;
+  	width: 50%;
+  	transform-origin: 100%;
+  	height: 10px;
+  	transform: rotate(90deg);
+  	transition: all 0.5s;
+   }
+  .hour-hand {
+  	background: black;
+  	left: 30%;
+  	width: 20%;
+  	/* background-image: url('hour.png'); */
+  }
+  .minute-hand { 
+  	background: black;
+  	left: 10%;
+  	width: 40%;
+  	/* background-image: url('minute.png'); */
+  }
+  .second-hand { 
+  	background: red; 
+  	left: 5%;
+  	width: 45%;
+  	height: 6px;
+
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <title> JS-CuckooClock </title>
+</head>
+
+<body>
+  <h1 class="heading"> Javascript Cuckoo Clock </h1>
+
+  <!-- Analogue Clock -->
+  <div class="clock">
+    <div class="clock-face">
+      <div class="hand hour-hand"> </div>
+      <div class="hand minute-hand"> </div>
+      <div class="hand second-hand"> </div>
+    </div>
+  </div> 
+</body>
+
+<script>
+  
+  const hourHand = document.querySelector('.hour-hand');
+  const minuteHand = document.querySelector('.minute-hand');
+  const secondHand = document.querySelector('.second-hand');
+  const digitalClock = document.querySelector('.digitalClock');
+
+  function setTime() {
+    // Get the current time in hours, minutes, seconds
+  	const currentTime = new Date();
+  	const hours = currentTime.getHours();
+  	const minutes = currentTime.getMinutes();
+  	const seconds = currentTime.getSeconds();
+
+    // Calculate the angle for each of the hands
+    const hoursDegrees = ((hours / 12) * 360) + 90;
+    const minutesDegrees = ((minutes / 60) * 360) + 90;
+    const secondsDegrees = ((seconds / 60) * 360) + 90;
+    // Apply the calculated angle to set the time
+    hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+    minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+    secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+  };
+
+    setInterval(setTime, 1000); // performs the setTime function every 1000ms = 1s
+
+</script>
+
+</html>
