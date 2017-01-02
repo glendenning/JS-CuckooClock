@@ -3,7 +3,7 @@
 <style type="text/css">
   /* General Page Styling */
   html {
-    background-image: url('rainforest.jpg');
+    background-image: url('rainforestBackground.jpg');
     background-color: lightgreen;
     background-size: auto;
     background-repeat: no-repeat;
@@ -49,17 +49,33 @@
     background: black;
     left: 30%;
     width: 20%;
+    /* background-image: url('hour.png'); */
   }
   .minute-hand { 
     background: black;
     left: 10%;
     width: 40%;
+    /* background-image: url('minute.png'); */
   }
   .second-hand { 
     background: red; 
     left: 5%;
     width: 45%;
     height: 6px;
+  }
+  .digitalClock {
+    font-size: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
+    position: relative;
+    text-align: center;
+    top: 60%;
+    margin: auto;
+    width: 200px;
+    border: 5px solid black;
+    border-radius: 10%;
+    padding: 10px;
+    background: lightgreen;
   }
   
   /* Description Box Area */
@@ -144,12 +160,15 @@
     const hours = currentTime.getHours();
     const minutes = currentTime.getMinutes();
     const seconds = currentTime.getSeconds();
+    const AM_PM = (0 <= hours && hours < 12) ? "AM" : "PM";
+    console.log(currentTime);
 
     // perform cuckoo at the start of every new hour
     if (seconds === 0 && hours === 0) {
       // make the cuckoo bird appear and play the cuckoo noise
       cuckooBird.style.visibility = `visible`;
       cuckooNoise.play();
+      console.log(cuckooNoise);
     };
 
     // if the cuckoo noise isn't playing, the cuckoo bird is hiding.
@@ -166,6 +185,12 @@
     hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
     minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
     secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+    // Also set digital clock
+    const stringHours = hours%12;
+    const stringMinutes = (minutes < 10) ? "0"+minutes : minutes;
+    const stringSeconds = (seconds < 10) ? "0"+seconds : seconds;
+    digitalClock.innerHTML = `${stringHours}:${stringMinutes}:${stringSeconds} ${AM_PM}`;
     
   };
 
