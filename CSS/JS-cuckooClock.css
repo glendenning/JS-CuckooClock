@@ -1,6 +1,6 @@
   /* General Page Styling */
   html {
-    background-image: url('rainforestBackground.jpg');
+    background-image: url('../images/rainforestBackground.jpg');
     background-color: lightgreen;
     background-size: auto;
     background-repeat: no-repeat;
@@ -26,7 +26,7 @@
     width: 715px;
     height: 715px;
     border-radius: 50%;
-    background-image: url('clockFace.png');
+    background-image: url('../images/clockFace.png');
   }
   .clock-face {
     position: relative;
